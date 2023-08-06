@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Row, Col, ListGroup, Image, Form, Button, Card, ListGroupItem } from 'react-bootstrap';
 import Message from '../components/Message';
-import { addToCart } from '../actions/cartActions';
+import { addToCart,removeFromCart } from '../actions/cartActions';
 
 const CartScreen = () => {
   const { id: productId } = useParams();
@@ -26,7 +26,7 @@ const CartScreen = () => {
   console.log(qty);
 
   const removeFromCartHandler = (id) => {
-   console.log('remove')
+   dispatch(removeFromCart(id))
   }
 
 

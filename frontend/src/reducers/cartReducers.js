@@ -1,4 +1,4 @@
-import {CART_ADD_ITEM} from '../constants/cartConstants'
+import {CART_ADD_ITEM,CART_REMOVE_ITEM} from '../constants/cartConstants'
 
 // export const cartReducer = (state = {cartItems:[],action}) =>{
 //  swicth(action.type){
@@ -37,26 +37,26 @@ export const cartReducer = (
          cartItems: [...state.cartItems, item],
        }
      }
- //   case CART_REMOVE_ITEM:
- //     return {
- //       ...state,
- //       cartItems: state.cartItems.filter((x) => x.product !== action.payload),
- //     }
- //   case CART_SAVE_SHIPPING_ADDRESS:
- //     return {
- //       ...state,
- //       shippingAddress: action.payload,
- //     }
- //   case CART_SAVE_PAYMENT_METHOD:
- //     return {
- //       ...state,
- //       paymentMethod: action.payload,
- //     }
- //   case CART_CLEAR_ITEMS:
- //     return {
- //       ...state,
- //       cartItems: [],
- //     }
+   case CART_REMOVE_ITEM:
+     return {
+       ...state,
+       cartItems: state.cartItems.filter((x) => x.product !== action.payload),
+     }
+  //  case CART_SAVE_SHIPPING_ADDRESS:
+  //    return {
+  //      ...state,
+  //      shippingAddress: action.payload,
+  //    }
+  //  case CART_SAVE_PAYMENT_METHOD:
+  //    return {
+  //      ...state,
+  //      paymentMethod: action.payload,
+  //    }
+  //  case CART_CLEAR_ITEMS:
+  //    return {
+  //      ...state,
+  //      cartItems: [],
+  //    }
    default:
      return state
  }
