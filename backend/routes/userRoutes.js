@@ -3,14 +3,16 @@ import express from 'express'
 const router = express.Router()
 // import Product from '../models/productModel.js'
 import products from '../data/products.js'
-import { getProducts,getProductById } from '../controllers/productControllers.js'
+// import { getProducts,getProductById } from '../controllers/productControllers.js'
+import { authUser } from '../controllers/userController.js'
 
 
 // @description Fetch all products
 // @route GET / api/products
 // @access Public
-router.route('/').get(getProducts)
-router.route('/:id').get(getProductById)
+// router.route('/').get(getProducts)
+router.post('/login',authUser)
+// router.route('/:id').get(getProductById)
  
 // @description Fetch singleproducts
 // @route GET / api/products/:id
