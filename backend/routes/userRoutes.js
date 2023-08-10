@@ -4,7 +4,8 @@ const router = express.Router()
 // import Product from '../models/productModel.js'
 import products from '../data/products.js'
 // import { getProducts,getProductById } from '../controllers/productControllers.js'
-import { authUser } from '../controllers/userController.js'
+import { authUser,getUserProfile,registerUser } from '../controllers/userController.js'
+import { protect } from '../middleware/authMiddleware.js'
 
 
 // @description Fetch all products
@@ -12,6 +13,9 @@ import { authUser } from '../controllers/userController.js'
 // @access Public
 // router.route('/').get(getProducts)
 router.post('/login',authUser)
+router.route('/').post(registerUser )
+
+router.route('/profile').get(protect,getUserProfile)
 // router.route('/:id').get(getProductById)
  
 // @description Fetch singleproducts

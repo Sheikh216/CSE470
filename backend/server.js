@@ -35,7 +35,7 @@ app.get('/',(req,res) =>{
 
 
 app.use('/api/products',productRoutes)
-app.use('/api/users',userRoutesRoutes)
+app.use('/api/users',userRoutes)
 
 app.use(notFound)
 //  for app.use, every req will go through these middleware before executing
