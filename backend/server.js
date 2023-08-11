@@ -7,6 +7,10 @@ import connectDB from './config/db.js'
 import productRoutes from './routes/productRoutes.js'
 import products from './data/products.js'
 import userRoutes from './routes/userRoutes.js'
+// import orderRoutes from '.routes/orderRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
+
+
 dotenv.config()
 
 connectDB()
@@ -36,6 +40,7 @@ app.get('/',(req,res) =>{
 
 app.use('/api/products',productRoutes)
 app.use('/api/users',userRoutes)
+app.use('/api/orders',orderRoutes)
 
 app.use(notFound)
 //  for app.use, every req will go through these middleware before executing

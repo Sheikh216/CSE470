@@ -4,7 +4,7 @@ const router = express.Router()
 // import Product from '../models/productModel.js'
 import products from '../data/products.js'
 // import { getProducts,getProductById } from '../controllers/productControllers.js'
-import { authUser,getUserProfile,registerUser } from '../controllers/userController.js'
+import { authUser,getUserProfile,registerUser,updateUserProfile } from '../controllers/userController.js'
 import { protect } from '../middleware/authMiddleware.js'
 
 
@@ -15,7 +15,7 @@ import { protect } from '../middleware/authMiddleware.js'
 router.post('/login',authUser)
 router.route('/').post(registerUser )
 
-router.route('/profile').get(protect,getUserProfile)
+router.route('/profile').get(protect,getUserProfile).put(protect,updateUserProfile)
 // router.route('/:id').get(getProductById)
  
 // @description Fetch singleproducts
