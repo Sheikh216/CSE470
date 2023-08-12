@@ -29,6 +29,14 @@ const addOrderItems = asyncHandler(async (req, res) => {
       taxPrice,
       shippingPrice,
       totalPrice,
+      isPaid : true,
+      paidAt : Date.now(),
+    //   paymentResult = {
+    //   id: req.body.id,
+    //   status: req.body.status,
+    //   update_time: req.body.update_time,
+    //   email_address: req.body.payer.email_address,
+    // }
     })
 
     const createdOrder = await order.save()
@@ -82,4 +90,22 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 })
 
 
-export {addOrderItems,getOrderById,updateOrderToPaid} 
+// @desc    Get logged in user orders
+// @route   GET /api/orders/myorders
+// @access  Private
+const getMyOrders = asyncHandler(async (req, res) => {
+  const orders = await Order.find({ user: req.user._id })
+  res.json(orders);
+  console.log('samir')
+})
+
+// @desc    Get all orders
+// @route   GET /api/orders
+// @access  Private/Admin
+// const getOrders = asyncHandler(async (req, res) => {
+//   const orders = await Order.find({}).populate('user', 'id name')
+//   res.json(orders)
+// })
+
+
+export {addOrderItems,getOrderById,updateOrderToPaid,getMyOrders} 
