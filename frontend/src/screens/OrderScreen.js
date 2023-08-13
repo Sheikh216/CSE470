@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import {
-  getOrderDetails,payOrder
+  getOrderDetails,payOrder,deliverOrder
 } from '../actions/orderActions'
 import {useParams,useNavigate} from 'react-router-dom'
 import {
@@ -20,8 +20,8 @@ const OrderScreen = () => {
  const navigate = useNavigate()
 
 // Irtiza
-  const userLogin = useSelector((state) => state.userLogin);
-  console.log(userLogin)
+  // const userLogin = useSelector((state) => state.userLogin);
+  // console.log(userLogin)
 
   // const orderId = match.params.id
 
@@ -35,11 +35,14 @@ const OrderScreen = () => {
   const orderPay = useSelector((state) => state.orderPay)
   const { loading: loadingPay, success: successPay } = orderPay
 
+  const orderDeliver = useSelector((state) => state.orderDeliver)
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver
+
   // const orderDeliver = useSelector((state) => state.orderDeliver)
   // const { loading: loadingDeliver, success: successDeliver } = orderDeliver
 
-  // const userLogin = useSelector((state) => state.userLogin)
-  // const { userInfo } = userLogin
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   if (!loading && order) {
     //   Calculate prices
@@ -69,9 +72,9 @@ const OrderScreen = () => {
       document.body.appendChild(script)
     }
     // if (!order || successPay || successDeliver || order._id !== orderId)
-    if (!order || successPay) {
+    if (!order || successPay||successDeliver) {
       dispatch({ type: ORDER_PAY_RESET })
-      // dispatch({ type: ORDER_DELIVER_RESET })
+      dispatch({ type: ORDER_DELIVER_RESET })
       dispatch(getOrderDetails(orderId))
     } else if (!order.isPaid) {
       if (!window.paypal) {
@@ -84,16 +87,16 @@ const OrderScreen = () => {
     if(!order || order._id !== orderId) {
      dispatch(getOrderDetails(orderId))
  }
-  }, [dispatch, orderId])
+  }, [dispatch, orderId,successPay,successDeliver,order])
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult)
     dispatch(payOrder(orderId, paymentResult))
   }
 
-  // const deliverHandler = () => {
-  //   dispatch(deliverOrder(order))
-  // }
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order))
+  }
   console.log(order)
   return loading ? (
     <Loader />
@@ -221,7 +224,8 @@ const OrderScreen = () => {
                   )}
                 </ListGroup.Item>
               )}
-              {/* {loadingDeliver && <Loader />}
+
+              {loadingDeliver && <Loader />}
               {userInfo &&
                 userInfo.isAdmin &&
                 order.isPaid &&
@@ -235,7 +239,8 @@ const OrderScreen = () => {
                       Mark As Delivered
                     </Button>
                   </ListGroup.Item>
-                )} */}
+                )}
+                
             </ListGroup>
           </Card>
         </Col>
