@@ -19,8 +19,8 @@ const UserListScreen = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  // const userDelete = useSelector((state) => state.userDelete);
-  // const { success: successDelete } = userDelete;
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success: successDelete } = userDelete;
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
@@ -29,13 +29,13 @@ const UserListScreen = () => {
       navigate('/login'); // Use navigate instead of history.push
     }
     
-  }, [navigate,dispatch]);
+  }, [navigate,dispatch,successDelete,userInfo]);
 
   const deleteHandler = (id) => {
     // if (window.confirm('Are you sure')) {
-    //   dispatch(deleteUser(id));
+      dispatch(deleteUser(id));
     // }
-    console.log('Delelte')
+ 
   };
 
   return (
