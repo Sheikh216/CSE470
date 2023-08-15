@@ -1,8 +1,8 @@
 const products = [
   {
     // _id: '1',
-    name: 'Test title',
-    image: '/images/airpods.jpg',
+    name: 'Venue',
+    image: '/images/Styling.jpg',
     description:
       'test desc',
     brand: 'Apple',

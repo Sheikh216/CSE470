@@ -86,7 +86,7 @@ const ProductScreen = () => {
             <ListGroup.Item>
               <Rating value={product.rating} text={`${product.numReviews} reviews`} />
             </ListGroup.Item>
-            <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+            <ListGroup.Item>Price: TK{product.price}</ListGroup.Item>
             <ListGroup.Item>Description: {product.description}</ListGroup.Item>
           </ListGroup>
         </Col>
@@ -97,7 +97,7 @@ const ProductScreen = () => {
                 <Row>
                   <Col>Price:</Col>
                   <Col>
-                    <strong>${product.price}</strong>
+                    <strong>TK{product.price}</strong>
                   </Col>
                 </Row>
               </ListGroupItem>
@@ -115,7 +115,7 @@ const ProductScreen = () => {
               {product.countInStock >0 && (
                 <ListGroupItem>
                 <Row>
-                  <Col>Qty</Col>
+                  <Col>How many</Col>
                   <Col>
                     <Form.Select value={qty} onChange={(e) => setQty(e.target.value)}>
                       {[...Array(product.countInStock).keys()].map(x => (

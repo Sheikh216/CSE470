@@ -66,7 +66,8 @@ const Header = () => {
                 </LinkContainer>
 
 
-                <LinkContainer to="admin/productlist" >
+                <LinkContainer to="admin/productlist" >  
+                {/* stored in App.js */}
                 <NavDropdown.Item >
                 Products
 
